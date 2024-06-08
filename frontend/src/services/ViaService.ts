@@ -8,7 +8,7 @@ import { adjustImageUrl } from "src/services/ImageService";
 class ViaService {
   async getViaById (id: number | string): Promise<Via> {
     try {
-      const response = await api.get(`/vias/${id}`);
+      const response = await api.get(`/api/vias/${id}`);
       const via = response.data as Via;
 
       if (via.imagem?.url) {

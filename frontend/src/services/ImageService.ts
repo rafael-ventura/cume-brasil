@@ -1,7 +1,7 @@
 /// @ts-ignore
 const serverIp = process.env.NODE_ENV === "development"
   ? "http://192.168.1.147:4020"
-  : "http://192.168.1.147:4020"; // Use o IP do seu computador aqui
+  : "http://192.168.56.1:4020"; // Use o IP do seu computador aqui
 
 export function adjustImageUrl (url: string): string {
   if (url) {

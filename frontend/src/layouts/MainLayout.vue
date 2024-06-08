@@ -12,11 +12,6 @@ import NavBar from "layouts/NavBar.vue";
 </script>
 
 <style scoped>
-/* Ajuste global para melhorar a aparência em dispositivos móveis */
-.q-page-container {
-  padding-top: 56px; /* Espaço para a navbar */
-}
-
 .q-layout__footer {
   height: 56px; /* Ajuste de altura para a footer */
 }
