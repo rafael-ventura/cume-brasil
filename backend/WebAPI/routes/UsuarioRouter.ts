@@ -15,4 +15,7 @@ UsuarioRouter.post("/", usuarioController.registrar);
 UsuarioRouter.put("/:id", usuarioController.update);
 UsuarioRouter.delete("/:id", usuarioController.delete);
 
+// perfil do usuario
+UsuarioRouter.get('/perfil/:id', authorizationMiddleware, usuarioController.getPerfil);
+
 export default UsuarioRouter;

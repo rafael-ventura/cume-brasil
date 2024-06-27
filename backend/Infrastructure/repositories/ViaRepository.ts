@@ -1,8 +1,9 @@
 //src/Infrastructure/repositories/ViaRepository.ts
 import { Via } from "../../Domain/entities/Via";
 import { AppDataSource } from "../config/db";
+import {ISearchRepository} from "../../Domain/interfaces/repositories/ISearchRepository";
 
-export class ViaRepository {
+export class ViaRepository implements ISearchRepository<Via>{
 
   private repository = AppDataSource.getRepository(Via);
   async getById (id: number): Promise<Via | null> {
@@ -53,4 +54,28 @@ export class ViaRepository {
       .getMany();
   }
 
+
+  async search(query: any): Promise<Via[]> {
+    const { searchQuery, selectedMountain, selectedDifficulty, selectedExposure } = query;
+
+    let qb = this.repository.createQueryBuilder('via');
+
+    if (searchQuery) {
+      qb = qb.andWhere('via.nome LIKE :searchQuery', { searchQuery: `%${searchQuery}%` });
+    }
+
+    if (selectedMountain) {
+      qb = qb.andWhere('via.montanha_id = :selectedMountain', { selectedMountain });
+    }
+
+    if (selectedDifficulty) {
+      qb = qb.andWhere('via.grau = :selectedDifficulty', { selectedDifficulty });
+    }
+
+    if (selectedExposure) {
+      qb = qb.andWhere('via.exposicao = :selectedExposure', { selectedExposure });
+    }
+
+    return await qb.getMany();
+  }
 }
