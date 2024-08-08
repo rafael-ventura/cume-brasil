@@ -28,6 +28,10 @@ jobs:
         run: |
           echo $HEROKU_API_KEY | heroku auth:token
 
+      - name: Add Heroku remote
+        run: |
+          git remote add heroku https://git.heroku.com/cumes-brasil.git
+
       - name: Make build.sh executable
         run: chmod +x build.sh
 
