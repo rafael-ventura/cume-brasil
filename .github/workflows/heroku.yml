@@ -28,5 +28,8 @@ jobs:
         run: |
           echo $HEROKU_API_KEY | heroku auth:token
 
+      - name: Make build.sh executable
+        run: chmod +x build.sh
+
       - name: Deploy to Heroku
         run: ./build.sh
